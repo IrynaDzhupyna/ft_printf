@@ -12,35 +12,67 @@
 
 #include "printf.h"
 
+//take the specifier char (c s p d i u x X %)
+// use switch statement to handle each case
+//return the num of char printed for that conversion
+int	handle_conversion(char specifier, va_list args)
+{
+	int	char_printed;
+
+	char_printed = 0;
+	switch (specifier)
+	{
+		case 'c':
+		case '%'
+			char_printed = handler_char(args);
+			break;
+		case 's':
+			char_printed = handler_string(args);
+			break;
+		case 'p':
+			char_printed = handler_void_pointer(args);
+			break;
+		case 'd':
+		case 'i':
+			char_printed = handler_int(args);
+			break;
+		case 'u':
+			char_printed = handler_unsigned_decimal(args);
+			break;
+		case 'x':
+		case 'X':
+			char_printed = handler_hexadecimal(args, specifier);
+			break;
+		default:
+			return (0);
+	}
+	return (char_printed);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
-	int	num_printed;
 	int	i;
+	int char_printed;
 
-	num_printed = 0;
 	i = 0;
 	va_start(args, format);
-
-	while (i < format)
+	while (format[i])
 	{
-		/*write to stdout
-                • %c Prints a single character.
-                • %s Prints a string (as defined by the common C convention).
-                • %p The void * pointer argument has to be printed in hexadecimal format.
-                • %d Prints a decimal (base 10) number.
-                • %i Prints an integer in base 10.
-                • %u Prints an unsigned decimal (base 10) number.
-                • %x Prints a number in hexadecimal (base 16) lowercase format.
-                • %X Prints a number in hexadecimal (base 16) uppercase format.
-                • %% Prints a percent sign.*/
-		i++;
-		format += va_arg(va, format_specifier);
-		if (error)
-			return (-1);
+		if (format[i] == '%')
+		{
+			char_printed += handle_conversion(format[i+1], args);
+			i = i + 2;
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			i++;
+			char_printed++;
+		}
 	}
-	va_end(va);
-	return (num_printed);
+	va_end(args);
+	return (char_printed);
 }
 
 int	main(void)
