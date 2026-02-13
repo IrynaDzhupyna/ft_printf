@@ -1,24 +1,29 @@
-
 ## Description
-Efficiently
 
-When ft_printf function scans the format string character by charecter looking for a format specifiers (cspdiuxX%). 
+**ft_printf()** formats and prints the values passed to it, based on the format specified in the first argument.
 
-If char == % it calls va_arg to look at the next character(the specifier).
-If char != % it proceeds to the next character.
+**Format** is a string that can contain three types of elements:
+1. Regular characters, which are printed as they are.
+2. Escape sequences, which are converted and then printed.
+3. Format specifiers, which tell the function how to print the next argument.
 
-Return (num_char_printed)
+Since ft_printf is a variadic function it can exept variable numbers and types of arguments, but the first argument is the one we use to format the rest.
 
-## Design of a function
-We can choose to:
-a) make a big **if/else** or **switch** block that calls small helper function 
-b) a **lookup table** mapping specifier -> function pointer)
+Example:
+ft_printf("Name: %s, Age: %d", "Alice", 25)
+- first argument -> "Name: %s, Age: %d" (the format string)
+- second argument -> "Alice"
+- third argument -> 25
 
-I choose option B because I want to learn lookup tables and I feel it will be more efficient to use it here.
+## Instructions
 
-### Lookup Table (LUT)
- - is the array populated with the names of all the elements (founctions?)
- 
+**va_list** is an object (array) which store all arguments passed to ft_printf. 
+// can we check if list is empty beforehand?
+ Our function go through the first argument (format string) character by character and if element is a regular character it calls ft_putchar to output it.
+ If the element is one of escape sequence ft_printf converts them and then calls **bla-bla** function to print them. 
+ If the element is a format specifier (%), than we need to check the next the next char to know how to print next argument from out list.
 
+ ### Linking Libft to ft_printf
+ Libft lybrary compiles first and then links into ft_printf, as a result we got static library libftprintf.a which contains libft's object files. 
 
 

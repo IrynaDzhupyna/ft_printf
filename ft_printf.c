@@ -5,78 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/19 10:55:32 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/09 19:23:00 by irdzhupy         ###   ########.fr       */
+/*   Created: 2026/02/13 12:21:27 by irdzhupy          #+#    #+#             */
+/*   Updated: 2026/02/13 14:47:06 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-//take the specifier char (c s p d i u x X %)
-// use switch statement to handle each case
-//return the num of char printed for that conversion
-int	handle_conversion(char specifier, va_list args)
+int	handle_conversion(va_list args, char c)
 {
-	int	char_printed;
+	int	printed;
 
-	char_printed = 0;
-	switch (specifier)
-	{
-		case 'c':
-		case '%'
-			char_printed = handler_char(args);
-			break;
-		case 's':
-			char_printed = handler_string(args);
-			break;
-		case 'p':
-			char_printed = handler_void_pointer(args);
-			break;
-		case 'd':
-		case 'i':
-			char_printed = handler_int(args);
-			break;
-		case 'u':
-			char_printed = handler_unsigned_decimal(args);
-			break;
-		case 'x':
-		case 'X':
-			char_printed = handler_hexadecimal(args, specifier);
-			break;
-		default:
-			return (0);
-	}
-	return (char_printed);
+	printed = 0;
+	if (c == 'c')
+		printed += handle_char(va_arg(args, int));
+	else if (c == 's')
+		printed += handle_str(va_arg(args, char *));
+	else if (c == 'i' || c == 'd')
+		printed += handle_int(va_arg(args, int));
+	return (printed);
 }
 
-int	ft_printf(const char *format, ...)
+int	ft_printf(const char *format_string, ...)
 {
 	va_list	args;
 	int	i;
-	int char_printed;
+	int	printed;
 
+	va_start(args, format_string);
 	i = 0;
-	va_start(args, format);
-	while (format[i])
+	while (format_string[i])
 	{
-		if (format[i] == '%')
+		printed = 0;
+		if (format_string[i] == '%' && format_string[i+1] != '%' 
+				&& format_string[i+1] != '\0')
 		{
-			char_printed += handle_conversion(format[i+1], args);
-			i = i + 2;
+			printed = handle_conversion(args, format_string[i+1]);
+			i++;
 		}
 		else
-		{
-			write(1, &format[i], 1);
-			i++;
-			char_printed++;
-		}
+			printed = handle_char(format_string[i]);
+		i++;
 	}
 	va_end(args);
-	return (char_printed);
-}
-
-int	main(void)
-{
-	printf("%c\n", c);
-	return (0);
+	return (1);
 }

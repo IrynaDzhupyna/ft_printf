@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:22:00 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 14:37:38 by irdzhupy         ###   ########.fr       */
+/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
+/*   Updated: 2026/02/13 14:29:52 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+int	main(void)
+{
+	char	*s = "Hello world";
 
-int	ft_printf(const char *format_string, ...);
-int	handle_conversion(va_list args, char c);
-int	handle_char(int c);
-int	handle_str(char *s);
-
-#endif
+	printf("Original: %s\n", s);
+	ft_printf("Mine: %s", s);
+	return (0);
+}

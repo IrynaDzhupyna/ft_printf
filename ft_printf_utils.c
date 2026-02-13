@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:22:00 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 14:37:38 by irdzhupy         ###   ########.fr       */
+/*   Created: 2026/02/13 12:41:53 by irdzhupy          #+#    #+#             */
+/*   Updated: 2026/02/13 15:55:15 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
+int	handle_char(int c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
-int	ft_printf(const char *format_string, ...);
-int	handle_conversion(va_list args, char c);
-int	handle_char(int c);
-int	handle_str(char *s);
+int	handle_str(char *s)
+{
+	int	i;
 
-#endif
+	i = 0;
+	while (s[i])
+	{
+		write(1, &s[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	handler_int(int n)
+{
+	int	printed;
+
+	printed = handler_str(ft_itoa(int n));
+	return (printed);
+}
