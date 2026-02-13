@@ -6,7 +6,7 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:41:53 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 15:55:15 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:56:23 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,13 @@ int	handle_str(char *s)
 	return (i);
 }
 
-int	handler_int(int n)
+int	handle_int(int n)
 {
 	int	printed;
+	char	*s;
 
-	printed = handler_str(ft_itoa(int n));
+	s = ft_itoa(n);
+	printed = handle_str(s);
+	free(s);
 	return (printed);
 }

@@ -6,7 +6,7 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 14:29:52 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:57:01 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	main(void)
 {
-	char	*s = "Hello world";
+	int	printed;
+	char	*s;
 
+	s = "Hello";
 	printf("Original: %s\n", s);
-	ft_printf("Mine: %s", s);
+	printed = ft_printf("Mine: %s\n", s);
+	printf("%i\n", printed);
 	return (0);
 }

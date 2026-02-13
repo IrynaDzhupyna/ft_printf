@@ -6,7 +6,7 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:21:27 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 14:47:06 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/13 21:56:09 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	ft_printf(const char *format_string, ...)
 		i++;
 	}
 	va_end(args);
-	return (1);
+	return (printed);
 }

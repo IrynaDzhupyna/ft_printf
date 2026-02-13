@@ -26,4 +26,14 @@ ft_printf("Name: %s, Age: %d", "Alice", 25)
  ### Linking Libft to ft_printf
  Libft lybrary compiles first and then links into ft_printf, as a result we got static library libftprintf.a which contains libft's object files. 
 
-
+How it was done:
+1. I copied Libft to ft_printf
+2. In Makefile 
+	- add:
+		LIBFTDIR = Libft
+		LIBFT = ${LIBFTDIR}/libft.a
+	- to build libft first 
+		${LIBFT}:
+			${MAKE} -C ${LIBFTDIR}
+	- to create a libftprintf.a by copying libft.a, then adding printf objects into it
+	
