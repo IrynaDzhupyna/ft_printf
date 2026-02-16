@@ -6,13 +6,14 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:22:00 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 21:44:26 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/16 11:09:18 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 #define FT_PRINTF_H
 
+#include "libft.h"
 #include <stdarg.h>
 #include <stdlib.h>
 #include <unistd.h>
