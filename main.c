@@ -6,7 +6,7 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/16 11:02:21 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/16 22:16:02 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 int	main(void)
 {
-	//int	printed;
-	int 	a;
-	int	b;
+	unsigned	a;
+	int	printed_o;
+	int	printed_m;
 
-	a = 0x1A2B;
-	b = 0x1a2b;
-	printf("Original upper: %x\n", a);
-	printf("Original lower: %x\n", b);
-	//printed = ft_printf("Mine: %x\n", a);
-	ft_printf("%x\n", a);
+	a = 4294967295;
+	printed_o = 0;
+	printed_m = 0;
+
+	printed_o = printf("Original %u\n", a);
+	printf("Printed original: %i\n", printed_o);
+
+	printed_m = ft_printf("Mriginal %u\n", a);
+	printf("Printed mine: %i\n", printed_m);
 	return (0);
 }

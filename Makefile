@@ -6,7 +6,7 @@
 #    By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/23 15:17:51 by irdzhupy          #+#    #+#              #
-#    Updated: 2026/02/13 20:58:34 by irdzhupy         ###   ########.fr        #
+#    Updated: 2026/02/16 21:56:22 by irdzhupy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 LIBFTDIR = Libft
 LIBFT = ${LIBFTDIR}/libft.a
 
-SRCS = ft_printf.c ft_printf_utils.c
+SRCS = ft_printf.c ft_printf_utils.c ft_printf_utils_2.c
 OBJS = ${SRCS:.c=.o}
 
 CC = cc

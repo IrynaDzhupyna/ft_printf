@@ -1,58 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:41:53 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/16 21:51:29 by irdzhupy         ###   ########.fr       */
+/*   Created: 2026/02/16 21:41:12 by irdzhupy          #+#    #+#             */
+/*   Updated: 2026/02/16 22:03:07 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_char(int c)
+int	ft_unsigned_len(unsigned n)
 {
-	int	i;
-
-	i = 1;
-	write(1, &c, 1);
-	return (i);
-}
-
-int	handle_str(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
+	int	len;
+	
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
 	{
-		write(1, &s[i], 1);
-		i++;
+		n = n / 10;
+		len++;
 	}
-	return (i);
+	return (len);
 }
 
-int	handle_int(int n)
+char	*ft_uitoa(unsigned n)
 {
-	int	printed;
 	char	*s;
+	int	len;
 
-	s = ft_itoa(n);
-	printed = handle_str(s);
-	free(s);
-	return (printed);
-}
-
-int	handle_uint(unsigned n)
-{
-	unsigned	printed;
-	char	*s;
-
-	//itoa for signed we need unsigned
-	s = ft_uitoa(n);
-	printed = handle_str(s);
-	free(s);
-	return (printed);
+	if (n == 0)
+		return (ft_strdup("0"));
+	len = ft_unsigned_len(n);
+	s = malloc(len + 1);
+	if (!s)
+		return (NULL);
+	s[len] = '\0';
+	while (n != 0)
+	{
+		s[--len] = n % 10 + 48;
+		n = n / 10;
+	}
+	return (s);
 }

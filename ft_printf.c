@@ -6,7 +6,7 @@
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 12:21:27 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/13 21:56:09 by irdzhupy         ###   ########.fr       */
+/*   Updated: 2026/02/16 22:13:21 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int	handle_conversion(va_list args, char c)
 		printed += handle_str(va_arg(args, char *));
 	else if (c == 'i' || c == 'd')
 		printed += handle_int(va_arg(args, int));
+	else if (c == 'u')
+		printed += handle_uint(va_arg(args, unsigned int));
+	//else if (c == 'x' || c == 'X')
+	//	printed += handle_hex(va_arg(args, unsigned int), c);  
 	return (printed);
 }
 
@@ -34,17 +38,17 @@ int	ft_printf(const char *format_string, ...)
 
 	va_start(args, format_string);
 	i = 0;
+	printed = 0;
 	while (format_string[i])
 	{
-		printed = 0;
 		if (format_string[i] == '%' && format_string[i+1] != '%' 
 				&& format_string[i+1] != '\0')
 		{
-			printed = handle_conversion(args, format_string[i+1]);
+			printed += handle_conversion(args, format_string[i+1]);
 			i++;
 		}
 		else
-			printed = handle_char(format_string[i]);
+			printed += handle_char(format_string[i]);
 		i++;
 	}
 	va_end(args);
