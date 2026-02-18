@@ -3,35 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
+/*   By: idzhup <idzhup@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:41:53 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/16 21:51:29 by irdzhupy         ###   ########.fr       */
+/*   Created: 2026/02/17 13:47:07 by idzhup            #+#    #+#             */
+/*   Updated: 2026/02/18 12:55:53 by idzhup           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_char(int c)
+int ft_strlen(const char *s)
 {
-	int	i;
+    int i;
 
-	i = 1;
-	write(1, &c, 1);
-	return (i);
-}
-
-int	handle_str(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
-	return (i);
+    if (!s)
+        return (0);
+    i = 0;
+    while (s[i])
+        i++;
+    return (i);
 }
 
 int	handle_int(int n)
@@ -45,14 +35,43 @@ int	handle_int(int n)
 	return (printed);
 }
 
-int	handle_uint(unsigned n)
+int	handle_str(char *s)
 {
-	unsigned	printed;
-	char	*s;
+    int i;
 
-	//itoa for signed we need unsigned
-	s = ft_uitoa(n);
-	printed = handle_str(s);
-	free(s);
-	return (printed);
+    i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+		write(1, &s[i++], 1);
+	return (i);
+}
+
+int handle_nbr_base(uintptr_t n, char *base)
+{
+    int printed;
+    unsigned long base_len;
+
+    if (!base)
+        return (0);
+    base_len = ft_strlen(base);
+    if (base_len < 2)
+        return (0);
+    printed = 0;
+    if (n >= base_len)
+        printed += handle_nbr_base(n / base_len, base);
+    printed += handle_char(base[n % base_len]);
+    return (printed);
+}
+
+int handle_pointer(void *p)
+{
+    int printed;
+
+    printed = 0;
+    if (!p)
+        return (handle_str("(nil)"));
+    printed = handle_str("0x");
+    printed += handle_nbr_base((uintptr_t)p, "0123456789abcdef");
+    return (printed);
 }
