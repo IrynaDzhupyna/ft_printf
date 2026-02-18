@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/11/21 22:21:43 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/17 21:50:47 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
+	size_t			i;
+	unsigned char	*p;
+	unsigned char	ch;
 
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
-	return (0);
+	i = 0;
+	p = (unsigned char *)s;
+	ch = (unsigned char)c;
+	while (i < n)
+	{
+		if (p[i] == ch)
+			return ((void *)(p + i));
+		i++;
+	}
+	return (NULL);
 }

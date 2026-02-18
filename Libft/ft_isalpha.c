@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/11/18 17:05:11 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/14 14:43:37 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	main(void)
+int	ft_isalpha(int c)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
-
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
+	if ((65 <= c && c <= 90) || (97 <= c && c <= 122))
+	{
+		return (1);
+	}
 	return (0);
 }

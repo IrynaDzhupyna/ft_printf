@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/12/10 11:53:09 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/27 16:06:14 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strdup(const char *s)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
+	char	*d;
+	size_t	i;
 
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
-	return (0);
+	i = 0;
+	d = malloc(ft_strlen(s) + 1);
+	if (d == NULL)
+	{
+		return (NULL);
+	}
+	while (s[i])
+	{
+		d[i] = s[i];
+		i++;
+	}
+	d[i] = '\0';
+	return (d);
 }

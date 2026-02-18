@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/11/25 11:08:23 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/20 22:19:53 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
+	size_t	i;
+	size_t	j;
 
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
-	return (0);
+	if (!*little)
+		return ((char *)big);
+	i = 0;
+	while (i < len && big[i])
+	{
+		j = 0;
+		if (big[i] == little[j])
+		{
+			while (little[j] && i + j < len && little[j] == big[i + j])
+			{
+				j++;
+			}
+			if (little[j] == '\0')
+				return ((char *)&big[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }

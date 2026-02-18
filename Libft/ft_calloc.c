@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/12/10 10:54:12 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/22 11:54:33 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
+	void	*p;
+	size_t	total;
 
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
-	return (0);
+	if (nmemb == 0 || size == 0)
+	{
+		p = malloc(1);
+		if (p == NULL)
+			return (NULL);
+		return (p);
+	}
+	total = nmemb * size;
+	if (total / nmemb != size)
+	{
+		return (NULL);
+	}
+	p = malloc(total);
+	if (p == NULL)
+	{
+		return (NULL);
+	}
+	ft_bzero(p, total);
+	return (p);
 }

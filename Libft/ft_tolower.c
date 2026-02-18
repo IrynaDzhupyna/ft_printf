@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/11/20 12:14:48 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/11/20 12:37:47 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+//#include <stdio.h>
 
-int	main(void)
+int	ft_tolower(int c)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
-
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
-	return (0);
+	if (65 <= c && c <= 90)
+	{
+		c = c + 32;
+	}
+	return (c);
 }
+
+/*int	main(void)
+{
+	int	n;
+
+	n = 'a';
+	printf("%c\n", ft_tolower(n));
+}*/

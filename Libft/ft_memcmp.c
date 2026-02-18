@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irdzhupy <irdzhupy@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 12:45:48 by irdzhupy          #+#    #+#             */
-/*   Updated: 2026/02/18 15:21:31 by irdzhupy         ###   ########.fr       */
+/*   Created: 2025/11/26 19:52:21 by irdzhupy          #+#    #+#             */
+/*   Updated: 2025/12/10 20:37:29 by irdzhupy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdio.h>
+#include <string.h>
 
-int	main(void)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int				printed_o;
-	int				printed_m;
-	char	*p;
+	size_t				i;
+	const unsigned char	*p1;
+	const unsigned char	*p2;
 
-	p = NULL;
-	printed_o = 0;
-	printed_m = 0;
-	printed_o = printf("NULL %p ", p);
-	printf("Printed original: %i\n", printed_o);
-	printed_m = ft_printf("NULL %p ",p);
-	printf("Printed mine: %i\n", printed_m);
+	i = 0;
+	p1 = s1;
+	p2 = s2;
+	if (n == 0)
+	{
+		return (0);
+	}
+	while (i < n)
+	{
+		if (p1[i] == p2[i])
+		{
+			i++;
+		}
+		else
+		{
+			return (p1[i] - p2[i]);
+		}
+	}
 	return (0);
 }
