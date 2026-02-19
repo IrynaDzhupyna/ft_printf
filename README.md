@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by <irdzhupy>.*
+*This project has been created as part of the 42 curriculum by irdzhupy.*
 
 # ft_printf
 
@@ -110,4 +110,4 @@ Libft is compiled first and merged into the final static library:
 ### AI Usage
 
 AI tools were used only for conceptual clarification and documentation review.
-All code was written and tested manually.
+All code was written and tested manually, also I used francinette to test it. 
